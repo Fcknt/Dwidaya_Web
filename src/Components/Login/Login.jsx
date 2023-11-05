@@ -1,45 +1,34 @@
 import React, { useState } from 'react';
-import './login.css';
+import './login.scss';
 
-function App() {
-	const [username, setUsername] = useState('');
+const Login = () => {
+	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const [loggedIn, setLoggedIn] = useState(false);
 
 	const handleLogin = () => {
-		if (username === 'user' && password === 'password') {
-			setLoggedIn(true);
-		} else {
-			alert('Login gagal. Silakan coba lagi.');
-		}
+		// Tambahkan logika autentikasi di sini
 	};
 
 	return (
-		<div className="cont">
-			{loggedIn ? (
-				<h1>Selamat datang, {username}!</h1>
-			) : (
-				<div className="form">
-					<h1>Form Login</h1>
-					<input
-						type="text"
-						placeholder="Username"
-						value={username}
-						onChange={(e) => setUsername(e.target.value)}
-					/>
-					<br />
-					<input
-						type="password"
-						placeholder="Password"
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-					/>
-					<br />
-					<button onClick={handleLogin}>Login</button>
-				</div>
-			)}
+		<div className="cont1">
+			<h2>Login Page</h2>
+			<form>
+				<input
+					type="email"
+					placeholder="Email"
+					value={email}
+					onChange={(e) => setEmail(e.target.value)}
+				/>
+				<input
+					type="password"
+					placeholder="Password"
+					value={password}
+					onChange={(e) => setPassword(e.target.value)}
+				/>
+				<button onClick={handleLogin}>Login</button>
+			</form>
 		</div>
 	);
-}
+};
 
-export default App;
+export default Login;

@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './navbar.css';
 import { SiYourtraveldottv } from 'react-icons/si';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { TbGridDots } from 'react-icons/tb';
 
 const Navbar = () => {
+	const navigate = useNavigate();
+
 	const [active, setActive] = useState('navBar');
 	const showNav = () => {
 		setActive('navBar activeNavbar');
@@ -69,7 +72,10 @@ const Navbar = () => {
 						</li>
 
 						<div className="headerBtns flex">
-							<button className="btn LoginBtn">
+							<button
+								onClick={() => navigate('/login')}
+								className="btn LoginBtn"
+							>
 								<a href="#">Login</a>
 							</button>
 
