@@ -64,6 +64,7 @@ const Coba = () => {
 					{Offers.map(({ id, imgSrc, destTitle, location, price }) => {
 						return (
 							<div
+                key={id}
 								data-aos="fade-up"
 								data-aos-duration="3000"
 								className="singleOffer"
