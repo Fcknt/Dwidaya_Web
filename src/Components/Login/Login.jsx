@@ -10,11 +10,17 @@ export const Login = () => {
     const localStorageData = localStorage.getItem("user-access");
     if (localStorageData) {
       const userData = JSON.parse(localStorageData);
-      setUserLogin(userData)
+      setLocalData(userData);
     } else {
       console.log("not data found in local storage");
     }
   };
+
+  const [localData, setLocalData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
 
   // handle Input
   const [userLogin, setUserLogin] = useState({
@@ -49,12 +55,16 @@ export const Login = () => {
   // handle login
   const onLogin = (e) => {
     e.preventDefault();
-    if ((userLogin.username || userLogin.email) && userLogin.password) {
+    if (
+      (userLogin.username === localData.username ||
+        userLogin.username === localData.email) &&
+      userLogin.password === localData.password
+    ) {
       setLoading(true);
       setTimeout(() => {
         localStorage.setItem(
           "login-info",
-          JSON.stringify({ login: true, username: userLogin.email }),
+          JSON.stringify({ login: true, username: localData.email }),
         );
         navigate("../");
       }, 3000);
@@ -67,8 +77,8 @@ export const Login = () => {
   useEffect(() => {
     const time = setTimeout(() => {
       checkLocalStorage();
-    }, 500)
-    return () => clearTimeout(time)
+    }, 500);
+    return () => clearTimeout(time);
   }, []);
 
   return (
