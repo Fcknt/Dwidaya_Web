@@ -55,19 +55,26 @@ export const Login = () => {
   // handle login
   const onLogin = (e) => {
     e.preventDefault();
-    if (
-      (userLogin.username === localData.username ||
-        userLogin.username === localData.email) &&
-      userLogin.password === localData.password
-    ) {
-      setLoading(true);
-      setTimeout(() => {
-        localStorage.setItem(
-          "login-info",
-          JSON.stringify({ login: true, username: localData.email }),
-        );
-        navigate("../");
-      }, 3000);
+    console.log(userLogin, "userlogin");
+    console.log(localData, "localData");
+    if (userLogin.username !== "" && userLogin.password !== "") {
+      if (
+        (userLogin.username === localData.username ||
+          userLogin.username === localData.email) &&
+        userLogin.password === localData.password
+      ) {
+        setLoading(true);
+        setTimeout(() => {
+          localStorage.setItem(
+            "login-info",
+            JSON.stringify({ login: true, username: localData.email }),
+          );
+          navigate("../");
+        }, 3000);
+      } else {
+        setError(true);
+        setTimeout(() => onReset(), 3000);
+      }
     } else {
       setError(true);
       setTimeout(() => onReset(), 3000);
