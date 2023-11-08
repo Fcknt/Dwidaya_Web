@@ -55,8 +55,6 @@ export const Login = () => {
   // handle login
   const onLogin = (e) => {
     e.preventDefault();
-    console.log(userLogin, "userlogin");
-    console.log(localData, "localData");
     if (userLogin.username !== "" && userLogin.password !== "") {
       if (
         (userLogin.username === localData.username ||
