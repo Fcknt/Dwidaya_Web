@@ -1,7 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import First from "./Components/Pages/First";
-import Login from "./Components/Login/Login";
+import { First } from "./Components/Pages/First";
+import { Login } from "./Components/Login/Login";
+import { Signup } from "./Components/Signup/Signup";
 import "./App.css";
 
 const App = () => {
@@ -15,6 +16,11 @@ const App = () => {
       id: 2,
       path: "/Login",
       element: <Login />,
+    },
+    {
+      id: 3,
+      path: "/Signup",
+      element: <Signup />,
     },
   ];
   return (

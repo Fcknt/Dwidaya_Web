@@ -49,6 +49,7 @@ const Navbar = () => {
   // handle Logout
   const onLogout = () => {
     localStorage.removeItem("login-info");
+    localStorage.removeItem("user-access");
     window.location.reload();
   };
 
@@ -61,46 +62,28 @@ const Navbar = () => {
     <section className="navBarSection">
       <div className={transparent}>
         <div className="logoDiv">
-          <a href="#" className="logo">
-            <h1 className="flex">
-              <SiYourtraveldottv className="icon" />
-              Dwidaya
-            </h1>
-          </a>
+          <h1 className="flex">
+            <SiYourtraveldottv className="icon" />
+            Dwidaya
+          </h1>
         </div>
-
         <div className={active}>
           <ul className="navList flex">
             <li className="navItem">
-              <a href="#" className="navLink">
-                Home
-              </a>
+              <span className="navLink">Home</span>
             </li>
-
             <li className="navItem">
-              <a href="#" className="navLink">
-                Products
-              </a>
+              <span className="navLink">Products</span>
             </li>
-
             <li className="navItem">
-              <a href="#" className="navLink">
-                Resources
-              </a>
+              <span className="navLink">Resources</span>
             </li>
-
             <li className="navItem">
-              <a href="#" className="navLink">
-                Contacts
-              </a>
+              <span className="navLink">Contacts</span>
             </li>
-
             <li className="navItem">
-              <a href="#" className="navLink">
-                Blog
-              </a>
+              <span className="navLink">Blog</span>
             </li>
-
             {auth.login ? (
               <div className="headerBtns flex">
                 <button className="btn">
@@ -113,24 +96,21 @@ const Navbar = () => {
             ) : (
               <div className="headerBtns flex">
                 <button
-                  onClick={() => navigate("/login")}
+                  onClick={() => navigate("/Login")}
                   className="btn LoginBtn"
                 >
-                  <a href="#">Login</a>
+                  Login
                 </button>
-
-                <button className="btn ">
-                  <a href="#">Sign Up</a>
+                <button className="btn" onClick={() => navigate("/Signup")}>
+                  Sign Up
                 </button>
               </div>
             )}
           </ul>
-
           <div onClick={removeNav} className="closeNavbar">
             <AiFillCloseCircle className="icon" />
           </div>
         </div>
-
         <div onClick={showNav} className="toggleNavbar">
           <TbGridDots className="icon" />
         </div>

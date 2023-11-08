@@ -6,7 +6,7 @@ import About from '../About/About';
 import Blog from '../Blog/Blog';
 import Footer from '../Footer/Footer';
 
-const First = () => {
+export const First = () => {
 	return (
 		<>
 			<Navbar />
@@ -19,5 +19,3 @@ const First = () => {
 		</>
 	);
 };
-
-export default First;

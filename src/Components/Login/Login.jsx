@@ -1,19 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./login.scss";
 
-const Login = () => {
+export const Login = () => {
   const navigate = useNavigate();
 
   // dummy account
-  const isAccount = {
-    username: "aldi@gmail.com",
-    password: "aldi",
+  const checkLocalStorage = () => {
+    const localStorageData = localStorage.getItem("user-access");
+    if (localStorageData) {
+      const userData = JSON.parse(localStorageData);
+      setUserLogin(userData)
+    } else {
+      console.log("not data found in local storage");
+    }
   };
 
   // handle Input
   const [userLogin, setUserLogin] = useState({
     username: "",
+    email: "",
     password: "",
   });
 
@@ -43,15 +49,12 @@ const Login = () => {
   // handle login
   const onLogin = (e) => {
     e.preventDefault();
-    if (
-      isAccount.username === userLogin.username &&
-      isAccount.password === userLogin.password
-    ) {
+    if ((userLogin.username || userLogin.email) && userLogin.password) {
       setLoading(true);
       setTimeout(() => {
         localStorage.setItem(
           "login-info",
-          JSON.stringify({ login: true, username: isAccount.username }),
+          JSON.stringify({ login: true, username: userLogin.email }),
         );
         navigate("../");
       }, 3000);
@@ -61,13 +64,20 @@ const Login = () => {
     }
   };
 
+  useEffect(() => {
+    const time = setTimeout(() => {
+      checkLocalStorage();
+    }, 500)
+    return () => clearTimeout(time)
+  }, []);
+
   return (
     <div className="login-section">
       <form onSubmit={onLogin}>
         <h2>Login Page</h2>
         <input
           name="username"
-          type="email"
+          type="text"
           placeholder="Email"
           value={userLogin.username}
           onChange={onHandleChange}
@@ -88,6 +98,4 @@ const Login = () => {
     </div>
   );
 };
-
-export default Login;
 
