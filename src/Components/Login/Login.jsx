@@ -67,7 +67,7 @@ export const Login = () => {
             "login-info",
             JSON.stringify({ login: true, username: localData.email }),
           );
-          navigate("../");
+          navigate("../dwidaya");
         }, 3000);
       } else {
         setError(true);
@@ -104,7 +104,12 @@ export const Login = () => {
           value={userLogin.password}
           onChange={onHandleChange}
         />
-        <button type="submit">Login</button>
+        <div className="login-or-signup">
+          <button type="submit">Login</button>
+          <button type="button" onClick={() => navigate("/signup")}>
+            Signup
+          </button>
+        </div>
         {error && (
           <p className="error">Woops, Username and Password Not Found</p>
         )}

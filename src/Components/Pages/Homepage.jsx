@@ -6,7 +6,7 @@ import About from '../About/About';
 import Blog from '../Blog/Blog';
 import Footer from '../Footer/Footer';
 
-export const First = () => {
+export const Homepage = () => {
 	return (
 		<>
 			<Navbar />

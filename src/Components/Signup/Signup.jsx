@@ -36,13 +36,10 @@ export const Signup = () => {
     e.preventDefault();
     if (isSignUp.username && isSignUp.email && isSignUp.password) {
       setLoading(true);
-      localStorage.setItem(
-        "user-access",
-        JSON.stringify(isSignUp),
-      );
+      localStorage.setItem("user-access", JSON.stringify(isSignUp));
       setTimeout(() => {
-        navigate("../login")
-      }, 2000)
+        navigate("../login");
+      }, 2000);
     } else {
       setError(true);
       setTimeout(() => {
@@ -73,7 +70,10 @@ export const Signup = () => {
           placeholder="Password"
           onChange={onHandleChange}
         />
-        <button type="submit">Submit</button>
+        <div className="login-or-signup">
+          <button type="submit">Submit</button>
+          <button type="button" onClick={() => navigate("/login")}>Login</button>
+        </div>
         {error && <p className="error">Field Cannot Be Empty</p>}
         {loading && <p className="loading">Loading...</p>}
       </form>

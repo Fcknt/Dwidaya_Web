@@ -1,55 +1,14 @@
 import React, { useEffect } from "react";
-import "./popular.css";
-import { BsArrowLeftShort } from "react-icons/bs";
-import { BsArrowRightShort } from "react-icons/bs";
-import { BsDot } from "react-icons/bs";
-import img from "../../Asset/img2.jpg";
-import img3 from "../../Asset/japan.jpg";
-import img4 from "../../Asset/korea.jpg";
-import img5 from "../../Asset/malaysia.jpg";
-import img6 from "../../Asset/thailand.jpg";
 import Aos from "aos";
+import { BsArrowLeftShort, BsArrowRightShort, BsDot } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
+import { popularDestination } from "../../data/popular";
 import "aos/dist/aos.css";
-
-const Data = [
-  {
-    id: 1,
-    imgSrc: img3,
-    destTitle: "Tokyo",
-    location: "Japan",
-    grade: "Food Culture",
-  },
-  {
-    id: 2,
-    imgSrc: img4,
-    destTitle: "Seoul",
-    location: "Korea",
-    grade: "Korean Culture",
-  },
-  {
-    id: 3,
-    imgSrc: img5,
-    destTitle: "Twin Tower",
-    location: "Malaysia",
-    grade: "Cultural Relax",
-  },
-  {
-    id: 4,
-    imgSrc: img6,
-    destTitle: "Chiang Mai",
-    location: "Thailand",
-    grade: "Culture Religion",
-  },
-  {
-    id: 5,
-    imgSrc: img,
-    destTitle: "Merlion Park",
-    location: "Singapore",
-    grade: "Touris",
-  },
-];
+import "./popular.scss";
 
 const Coba = () => {
+  const navigate = useNavigate();
+
   useEffect(() => {
     Aos.init({ duration: 2000 });
   }, []);
@@ -70,7 +29,6 @@ const Coba = () => {
               vel architecto nulla sit?
             </p>
           </div>
-
           <div
             data-aos="fade-left"
             data-aos-duration="2500"
@@ -81,7 +39,7 @@ const Coba = () => {
           </div>
         </div>
         <div className="mainContent grid">
-          {Data.map(({ id, imgSrc, destTitle, location, grade }) => {
+          {popularDestination.map(({ id, image, title, location }) => {
             return (
               <div
                 key={id}
@@ -90,12 +48,15 @@ const Coba = () => {
                 className="singleDestination"
               >
                 <div className="destImage">
-                  <img src={imgSrc} alt="Image Title" />
+                  <img src={image} alt={title} />
 
                   <div className="overlayInfo">
-                    <h3>{destTitle}</h3>
+                    <h3>{title}</h3>
                     <p>{location}</p>
-                    <BsArrowRightShort className="icon" />
+                    <BsArrowRightShort
+                      className="icon"
+                      onClick={() => navigate(`info/${id}/${title}`)}
+                    />
                   </div>
                 </div>
                 <div className="destFooter">

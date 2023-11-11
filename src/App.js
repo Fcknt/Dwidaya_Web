@@ -1,38 +1,41 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { First } from "./Components/Pages/First";
+import { createBrowserRouter, Navigate } from "react-router-dom";
+import { Homepage } from "./Components/Pages/Homepage";
 import { Login } from "./Components/Login/Login";
 import { Signup } from "./Components/Signup/Signup";
+import { DestinationInfo } from "./Components/Pages/Destination/DestinationInfo";
+import { OrderForm } from "./Components/Pages/Order/OrderForm";
 import "./App.css";
 
-const App = () => {
-  const access = [
-    {
-      id: 1,
-      path: "/",
-      element: <First />,
-    },
-    {
-      id: 2,
-      path: "/Login",
-      element: <Login />,
-    },
-    {
-      id: 3,
-      path: "/Signup",
-      element: <Signup />,
-    },
-  ];
-  return (
-    <Router>
-      <Routes>
-        {access.map((item) => (
-          <Route key={item.id} path={item.path} element={item.element} />
-        ))}
-      </Routes>
-    </Router>
-  );
-};
-
-export default App;
+export const router = createBrowserRouter([
+  {
+    path: "/dwidaya",
+    children: [
+      {
+        path: "",
+        element: <Homepage />,
+      },
+      {
+        path: "info/:id/:title",
+        element: <DestinationInfo />,
+      },
+      {
+        path: "order/:title",
+        element: <OrderForm />,
+      },
+    ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/signup",
+    element: <Signup />,
+  },
+  {
+    path: "*",
+    element: <Navigate to={"/dwidaya"} />,
+  },
+]);
 

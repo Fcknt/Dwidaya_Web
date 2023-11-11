@@ -61,7 +61,7 @@ const Navbar = () => {
   return (
     <section className="navBarSection">
       <div className={transparent}>
-        <div className="logoDiv">
+        <div className="logoDiv" style={{ cursor: "pointer" }}>
           <h1 className="flex">
             <SiYourtraveldottv className="icon" />
             Dwidaya
