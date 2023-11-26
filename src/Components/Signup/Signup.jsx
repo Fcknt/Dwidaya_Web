@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import "./signup.scss";
 
@@ -36,11 +37,13 @@ export const Signup = () => {
     e.preventDefault();
     if (isSignUp.username && isSignUp.email && isSignUp.password) {
       setLoading(true);
+      toast.success("Congratulation, Account successuly created", {});
       localStorage.setItem("user-access", JSON.stringify(isSignUp));
       setTimeout(() => {
         navigate("../login");
-      }, 2000);
+      }, 3000);
     } else {
+      toast.error("Field Cannot Be Empty", {});
       setError(true);
       setTimeout(() => {
         onReset();
@@ -72,7 +75,9 @@ export const Signup = () => {
         />
         <div className="login-or-signup">
           <button type="submit">Submit</button>
-          <button type="button" onClick={() => navigate("/login")}>Login</button>
+          <button type="button" onClick={() => navigate("/login")}>
+            Login
+          </button>
         </div>
         {error && <p className="error">Field Cannot Be Empty</p>}
         {loading && <p className="loading">Loading...</p>}

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import "./login.scss";
 
@@ -11,8 +12,6 @@ export const Login = () => {
     if (localStorageData) {
       const userData = JSON.parse(localStorageData);
       setLocalData(userData);
-    } else {
-      console.log("not data found in local storage");
     }
   };
 
@@ -46,12 +45,6 @@ export const Login = () => {
     });
   };
 
-  // reset error reset field
-  const onReset = () => {
-    setError(false);
-    setUserLogin({ username: "", password: "" });
-  };
-
   // handle login
   const onLogin = (e) => {
     e.preventDefault();
@@ -62,6 +55,7 @@ export const Login = () => {
         userLogin.password === localData.password
       ) {
         setLoading(true);
+        toast.success(`Wellcome Back ${userLogin.username}`, {});
         setTimeout(() => {
           localStorage.setItem(
             "login-info",
@@ -70,12 +64,12 @@ export const Login = () => {
           navigate("../dwidaya");
         }, 3000);
       } else {
+        toast.error("Woops, Username and Password Not Found", {});
         setError(true);
-        setTimeout(() => onReset(), 3000);
       }
     } else {
+      toast.error("Woops, Username and Password Not Found", {});
       setError(true);
-      setTimeout(() => onReset(), 3000);
     }
   };
 

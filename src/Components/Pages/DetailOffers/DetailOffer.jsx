@@ -11,6 +11,7 @@ import {
   MdAirportShuttle,
   MdOutlineStar,
   MdOutlineStarHalf,
+  MdStarBorder,
 } from "react-icons/md";
 import { IoIosArrowForward } from "react-icons/io";
 import "./detail-offer.scss";
@@ -18,6 +19,7 @@ import "./detail-offer.scss";
 export const DetailOffers = () => {
   const { location } = useParams();
   const navigate = useNavigate();
+  const [isLogin, setLogin] = useState(false);
   const [offer, setOffer] = useState();
   const [previewImage, setPreviewImage] = useState();
 
@@ -46,18 +48,6 @@ export const DetailOffers = () => {
     });
   };
 
-  useEffect(() => {
-    offerByParams();
-  }, []);
-
-  useEffect(() => {
-    if (offer && Array.isArray(offer.imgSrc) && offer.imgSrc.length > 0) {
-      setPreviewImage(offer.imgSrc[0]);
-    } else {
-      setPreviewImage(null);
-    }
-  }, [offer]);
-
   const isRatingStars = (num) => {
     const stars = [];
     const fullStars = Math.floor(num);
@@ -71,13 +61,39 @@ export const DetailOffers = () => {
       stars.push("half");
     }
 
-    const remaining = 5 - stars.length; // Assuming 5 stars in total
+    const remaining = 5 - stars.length;
+
     for (let i = 1; i <= remaining; i++) {
-      stars.push("empty");
+      if (i === 1 && num < 5) {
+        stars.push("border");
+      } else {
+        stars.push("empty");
+      }
     }
 
     return stars;
   };
+
+  useEffect(() => {
+    offerByParams();
+  }, []);
+
+  useEffect(() => {
+    if (offer && Array.isArray(offer.imgSrc) && offer.imgSrc.length > 0) {
+      setPreviewImage(offer.imgSrc[0]);
+    } else {
+      setPreviewImage(null);
+    }
+  }, [offer]);
+
+  useEffect(() => {
+    const isLogin = localStorage.getItem("login-info");
+    if (isLogin) {
+      setLogin(true);
+    } else {
+      setLogin(false);
+    }
+  }, []);
 
   return (
     <>
@@ -206,7 +222,7 @@ export const DetailOffers = () => {
         <div className="offer-rate">
           <span>Rate for this place</span>
           <div className="offer-star">
-            {isRatingStars(4.5).map((item, index) => {
+            {isRatingStars(offer?.rate).map((item, index) => {
               if (item === "full") {
                 return (
                   <div key={index}>
@@ -219,8 +235,18 @@ export const DetailOffers = () => {
                     <MdOutlineStarHalf fontSize={24} color={"#FF7A00"} />
                   </div>
                 );
+              } else if (item === "border") {
+                return (
+                  <div key={index}>
+                    <MdStarBorder fontSize={24} color={"#FF7A00"} />
+                  </div>
+                );
               } else {
-                return null;
+                return (
+                  <div key={index}>
+                    <MdStarBorder fontSize={24} color={"#E0E0E0"} />
+                  </div>
+                );
               }
             })}
           </div>
@@ -229,10 +255,12 @@ export const DetailOffers = () => {
           type="button"
           className="button-order-offer"
           onClick={() => {
-            navigate(`/dwidaya/order/${location}`);
+            isLogin
+              ? navigate(`/dwidaya/order/${location}`)
+              : navigate(`/login`);
           }}
         >
-          Order
+          {isLogin ? "Order" : "Login Now"}
         </button>
       </div>
     </>
