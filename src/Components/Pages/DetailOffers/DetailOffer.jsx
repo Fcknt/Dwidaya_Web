@@ -12,12 +12,13 @@ import {
   MdOutlineStar,
   MdOutlineStarHalf,
 } from "react-icons/md";
+import { IoIosArrowForward } from "react-icons/io";
 import "./detail-offer.scss";
 
 export const DetailOffers = () => {
   const { location } = useParams();
   const navigate = useNavigate();
-  const [offer, setOffer] = useState({ image: null });
+  const [offer, setOffer] = useState();
   const [previewImage, setPreviewImage] = useState();
 
   const offerByParams = () => {
@@ -29,15 +30,31 @@ export const DetailOffers = () => {
     }
   };
 
+  const handleNextImage = () => {
+    setPreviewImage((prevImage) => {
+      if (offer && Array.isArray(offer?.imgSrc) && offer?.imgSrc.length > 0) {
+        const currentImageIndex = offer?.imgSrc?.findIndex(
+          (img) => img === prevImage,
+        );
+        const nextIndex =
+          currentImageIndex < offer?.imgSrc?.length - 1
+            ? currentImageIndex + 1
+            : 0;
+        return offer?.imgSrc[nextIndex];
+      }
+      return null;
+    });
+  };
+
   useEffect(() => {
     offerByParams();
   }, []);
 
   useEffect(() => {
     if (offer && Array.isArray(offer.imgSrc) && offer.imgSrc.length > 0) {
-      setPreviewImage({ image: offer.imgSrc[0] });
+      setPreviewImage(offer.imgSrc[0]);
     } else {
-      setPreviewImage({ image: null });
+      setPreviewImage(null);
     }
   }, [offer]);
 
@@ -98,8 +115,25 @@ export const DetailOffers = () => {
       {/* content */}
       <div className="offer-content">
         {/* 1 */}
-        <div className="content">
-          <img src={previewImage?.image} alt="offer-pic" />
+        <div className="content" style={{ position: "relative" }}>
+          <img src={previewImage} alt="offer-pic" />
+          <div
+            style={{
+              width: "2rem",
+              background: "#EAEAEA",
+              position: "absolute",
+              top: "0",
+              bottom: "0",
+              right: "0",
+            }}
+          >
+            <IoIosArrowForward
+              color={"#15ABFF"}
+              fontSize={32}
+              style={{ cursor: "pointer", position: "absolute", top: "50%" }}
+              onClick={handleNextImage}
+            />
+          </div>
         </div>
 
         {/* 2 */}
@@ -111,7 +145,7 @@ export const DetailOffers = () => {
               opacity: "50%",
             }}
           >
-            Rp. {offer.beforeDiscount}
+            Rp. {offer?.beforeDiscount}
           </span>
           <div
             style={{
@@ -122,10 +156,10 @@ export const DetailOffers = () => {
             }}
           >
             <span style={{ fontSize: "28px", fontWeight: "400" }}>
-              Rp. {offer.price}
+              Rp. {offer?.price}
             </span>
             <span style={{ color: "#FF7A00", fontSize: "16px" }}>
-              {offer.discount}% off
+              {offer?.discount}% off
             </span>
           </div>
           <div className="offer-detail">
@@ -163,7 +197,7 @@ export const DetailOffers = () => {
             src={item}
             alt="pic-preview"
             onClick={() => {
-              setPreviewImage({ image: item });
+              setPreviewImage(item);
             }}
           />
         ))}
