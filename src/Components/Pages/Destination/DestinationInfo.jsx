@@ -6,6 +6,7 @@ import "./destination.scss";
 
 export const DestinationInfo = () => {
   const { id } = useParams();
+
   const navigate = useNavigate();
 
   const [isLogin, setIsLogin] = useState(false);

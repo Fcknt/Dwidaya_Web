@@ -1,0 +1,24 @@
+.container-form {
+  padding: 0 !important;
+}
+
+.button-order {
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    left: 0% !important;
+  }
+}
+
+select,
+textarea {
+  padding: 0.75rem 1rem;
+  border-radius: 16px;
+  border: none;
+}
+
+textarea {
+  width: 100%;
+}
+

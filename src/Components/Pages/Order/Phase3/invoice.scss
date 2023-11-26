@@ -1,0 +1,165 @@
+.container-invoice {
+  width: auto;
+
+  .inner-invoice {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem;
+    border-radius: 1rem;
+    background-color: #f2f5f9;
+
+    .invoice {
+      display: flex;
+      justify-content: space-between;
+
+      p {
+        color: #60737d;
+      }
+    }
+  }
+
+  .bill {
+    display: flex;
+    justify-content: space-between;
+
+    .bill-info {
+      p {
+        color: #60737d;
+      }
+    }
+
+    .issue-bill {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-end;
+
+      p {
+        color: #60737d;
+      }
+    }
+  }
+
+  span {
+    font-weight: 700;
+  }
+
+  .container-service {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 2rem;
+    margin-left: 1.5rem;
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+
+      thead {
+        tr {
+          padding: 8px 1rem;
+          font-weight: bold;
+          text-align: left;
+        }
+      }
+
+      tbody {
+        tr {
+          td {
+            padding: 1rem 0;
+            text-align: left;
+
+            &:nth-child(1) {
+              width: 25%; // Adjust column width as needed
+            }
+
+            &:nth-child(2) {
+              width: 25%; // Adjust column width as needed
+            }
+
+            &:nth-child(3) {
+              width: 25%; // Adjust column width as needed
+            }
+
+            &:nth-child(4) {
+              width: 25%; // Adjust column width as needed
+            }
+          }
+
+          &:hover {
+            background-color: #f9f9f9;
+          }
+        }
+      }
+    }
+  }
+
+  .total-price {
+    padding: 2rem;
+    text-align: right;
+
+    .inner-price {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .line {
+        width: 100%;
+        height: 4px;
+        background: #f2f5f9;
+      }
+
+      .price {
+        display: flex;
+        justify-content: space-evenly;
+        width: 80%;
+        padding: 0.5rem 1rem;
+        background: #f2f5f9;
+        border-radius: 1rem;
+
+        span {
+          font-weight: 700;
+        }
+      }
+    }
+  }
+
+  .button-action {
+    text-align: right;
+
+    button {
+      min-width: 100px;
+      padding: 0.5rem 1.25rem;
+      border-radius: 2rem;
+      background-color: #f86b29;
+      border: none;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 500;
+
+      &:hover {
+        opacity: 70%;
+      }
+
+      &:active {
+        opacity: 90%;
+      }
+    }
+  }
+
+  .footer-invoice {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    gap: 4rem;
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      font-size: 0.75rem;
+      gap: .5rem;
+    }
+  }
+}
+
