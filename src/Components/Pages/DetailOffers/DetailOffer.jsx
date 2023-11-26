@@ -87,7 +87,7 @@ export const DetailOffers = () => {
           <div className="button-action">
             <button
               type="button"
-              className="button"
+              className="button-order-offer"
               onClick={() => {
                 navigate("/dwidaya");
               }}
@@ -227,7 +227,7 @@ export const DetailOffers = () => {
         </div>
         <button
           type="button"
-          className="button"
+          className="button-order-offer"
           onClick={() => {
             navigate(`/dwidaya/order/${location}`);
           }}
