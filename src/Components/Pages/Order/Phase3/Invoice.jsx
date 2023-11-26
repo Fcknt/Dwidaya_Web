@@ -1,33 +1,21 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { popularDestination } from "../../../../data/popular";
 import "./invoice.scss";
 
 export const Invoice = () => {
+  const { title } = useParams();
+
   const navigate = useNavigate();
 
-  const generateInvoice = () => Math.ceil(Math.random() * 200) + Math.random().toFixed(4);
+  const generateInvoice = () =>
+    Math.ceil(Math.random() * 200) + Math.random().toFixed(4);
 
   const [dataClient, setDataClient] = useState({});
 
-  const getData = () => {
-    const user = JSON.parse(localStorage.getItem("login-info"));
-    const requirement = JSON.parse(localStorage.getItem("dataRequirement"));
-    const contact = JSON.parse(localStorage.getItem("contactDetails"));
-    setDataClient({
-      data: {
-        invoice: generateInvoice(),
-        user,
-        contact,
-        requirement,
-      },
-    });
-  };
-
   const findByName = popularDestination.filter(
     (item) =>
-      item.location.toLowerCase() ===
-      dataClient?.data?.requirement?.location.toLowerCase(),
+      item.orderLink.split("/")[1].toLowerCase() === title.toLowerCase(),
   );
 
   function formatIDRPrice(price) {
@@ -40,10 +28,37 @@ export const Invoice = () => {
   }
 
   useEffect(() => {
-    const time = setTimeout(() => {
-      getData();
-    }, 500);
-    return () => clearTimeout(time);
+    const getDataFromLocalStorage = () => {
+      const user = JSON.parse(localStorage.getItem("login-info"));
+      const requirement = JSON.parse(localStorage.getItem("dataRequirement"));
+      const contact = JSON.parse(localStorage.getItem("contactDetails"));
+      setDataClient({
+        data: {
+          invoice: generateInvoice(),
+          user,
+          contact,
+          requirement,
+        },
+      });
+    };
+
+    getDataFromLocalStorage();
+
+    const handleStorageChange = (event) => {
+      if (
+        event.key === "login-info" ||
+        event.key === "dataRequirement" ||
+        event.key === "contactDetails"
+      ) {
+        getDataFromLocalStorage();
+      }
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
   }, []);
 
   return (

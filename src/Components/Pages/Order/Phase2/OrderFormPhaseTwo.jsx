@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { popularDestination } from "../../../../data/popular";
 import { Modal } from "../../../Modal/Modal";
 import { Invoice } from "../Phase3/Invoice";
 import "./extends.scss";
@@ -22,7 +21,6 @@ export const OrderFormPhaseTwo = () => {
     formState: { errors },
   } = useForm({
     values: {
-      location: "",
       nop: "",
       checkIn: "",
       checkOut: "",
@@ -37,8 +35,8 @@ export const OrderFormPhaseTwo = () => {
   };
 
   const onSubmitInformation = (data) => {
-    const { location, nop, checkIn, checkOut, room, specs, additional } = data;
-    if (!location || !nop || !checkIn || !checkOut || !room || !specs) {
+    const { nop, checkIn, checkOut, room, specs, additional } = data;
+    if (!nop || !checkIn || !checkOut || !room || !specs) {
       for (const i in data) {
         if (i === "nop") {
           setError(i, {
@@ -80,22 +78,6 @@ export const OrderFormPhaseTwo = () => {
           >
             <div className="form-info">
               <h1>Your Requirement</h1>
-            </div>
-            <div className="label-input">
-              <label>Location</label>
-              <select {...register("location")}>
-                <option value="" disabled hidden>
-                  Location
-                </option>
-                {popularDestination.map((item) => (
-                  <option key={item.id} value={item.location}>
-                    {item.location}
-                  </option>
-                ))}
-              </select>
-              {errors.location && (
-                <p className="error">{errors.location.message}</p>
-              )}
             </div>
             <div className="label-input">
               <label>Number Of People</label>

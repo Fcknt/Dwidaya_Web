@@ -50,6 +50,8 @@ const Navbar = () => {
   const onLogout = () => {
     localStorage.removeItem("login-info");
     localStorage.removeItem("user-access");
+    localStorage.removeItem("contactDetails");
+    localStorage.removeItem("dataRequirement");
     window.location.reload();
   };
 
