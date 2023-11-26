@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { popularDestination } from "../../../../data/popular";
 import { Modal } from "../../../Modal/Modal";
 import { Invoice } from "../Phase3/Invoice";
@@ -179,7 +179,6 @@ export const OrderFormPhaseTwo = () => {
       <Modal open={openModalInvoice}>
         <Invoice setOpen={setOpenModalInvoice} />
       </Modal>
-      <ToastContainer />
     </>
   );
 };
