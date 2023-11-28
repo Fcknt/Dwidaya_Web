@@ -55,7 +55,7 @@ const Coba = () => {
                     <p>{location}</p>
                     <BsArrowRightShort
                       className="icon"
-                      onClick={() => navigate(`info/${id}/${title}`)}
+                      onClick={() => navigate(`info/${id}/${location}`)}
                     />
                   </div>
                 </div>

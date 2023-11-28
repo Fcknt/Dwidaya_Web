@@ -65,7 +65,7 @@ export const DestinationInfo = () => {
         {isLogin ? (
           <button
             className="order"
-            onClick={() => navigate(`/dwidaya/order/${cardInformation.title}`)}
+            onClick={() => navigate(`/dwidaya/order/${cardInformation.location}`)}
           >
             <span>Book Now</span>
             <IoIosArrowForward color={"#559BFF"} />
