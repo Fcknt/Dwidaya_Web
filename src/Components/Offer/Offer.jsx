@@ -13,6 +13,7 @@ import "./offer.scss";
 
 const Coba = () => {
   const navigate = useNavigate();
+
   useEffect(() => {
     Aos.init({ duration: 2000 });
   }, []);

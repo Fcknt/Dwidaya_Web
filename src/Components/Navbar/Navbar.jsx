@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { SiYourtraveldottv } from "react-icons/si";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { TbGridDots } from "react-icons/tb";
-import "./navbar.css";
+import "./navbar.scss";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -63,11 +63,12 @@ const Navbar = () => {
   return (
     <section className="navBarSection">
       <div className={transparent}>
-        <div className="logoDiv" style={{ cursor: "pointer" }}>
-          <h1 className="flex">
-            <SiYourtraveldottv className="icon" />
-            Dwidaya
-          </h1>
+        <div
+          className="logoDiv"
+          style={{ color: "#f86b29", cursor: "pointer" }}
+        >
+          <SiYourtraveldottv style={{ fontSize: "2rem" }} strokeWidth={0.75} />
+          <span>Dwidaya</span>
         </div>
         <div className={active}>
           <ul className="navList flex">
