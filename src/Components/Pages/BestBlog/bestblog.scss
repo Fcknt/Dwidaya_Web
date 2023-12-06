@@ -1,0 +1,134 @@
+.blog-container {
+  max-width: 1000px;
+  margin: auto;
+
+  h1 {
+    font-size: 30px;
+    text-align: center;
+    color: #f86b29;
+    margin: 1.5rem 0;
+  }
+
+  .blog-jumbotron {
+    display: flex;
+    gap: 1rem;
+
+    img {
+      min-width: 600px;
+      min-height: 400px;
+      object-fit: cover;
+    }
+
+    .blog-information {
+      max-width: 400px;
+      min-height: inherit;
+      display: flex;
+      flex-direction: column;
+
+      .blog-rate {
+        display: flex;
+        margin-bottom: 6rem;
+        justify-content: space-between;
+      }
+
+      p {
+        font-weight: 400;
+        font-size: 18px;
+        text-align: justify;
+      }
+
+      .heart {
+        min-height: 100px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        margin: 1rem 0;
+      }
+    }
+  }
+
+  .order-preview {
+    display: flex;
+    justify-content: space-between;
+
+    .order-btn {
+      align-self: center;
+      cursor: pointer;
+      min-width: 100px;
+      max-height: 50px;
+      padding: 0.5rem 1.25rem;
+      border-radius: 2rem;
+      background-color: #f86b29;
+      border: none;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 500;
+
+      &:hover {
+        opacity: 70%;
+      }
+
+      &:active {
+        opacity: 90%;
+      }
+    }
+
+    .book-container {
+      margin: 1rem 0;
+      max-width: 700px;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .book-card {
+      display: flex;
+      max-width: 300px;
+      gap: 1rem;
+
+      img {
+        max-width: 150px;
+        min-height: 120px;
+        object-fit: cover;
+      }
+
+      .book-info {
+        font-size: 12px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .book-title {
+          max-width: 300px;
+          display: flex;
+          align-items: center;
+          flex-wrap: wrap;
+        }
+
+        .book-location {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+        }
+      }
+
+      button {
+        border-radius: 8px;
+        border: none;
+        padding: 0.25rem 0.1rem;
+        background-color: #f86b29;
+        color: #fff;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 70%;
+        }
+
+        &:active {
+          opacity: 90%;
+        }
+      }
+    }
+  }
+}
+

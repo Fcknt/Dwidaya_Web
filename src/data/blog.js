@@ -21,6 +21,7 @@ import malaysia3 from "../Asset/Langkawi/langkawi3.jpg";
 export const blogInformation = [
   {
     id: 1,
+    rate: 4.5,
     postImage: [singapore1, singapore2, singapore3],
     location: "Singapore",
     title: "Beautiful East Coast Park Singapore",
@@ -28,6 +29,7 @@ export const blogInformation = [
   },
   {
     id: 2,
+    rate: 5,
     postImage: [japan1, japan2, japan3],
     location: "Japan",
     title: "Fuji Mountain Japan",
@@ -35,6 +37,7 @@ export const blogInformation = [
   },
   {
     id: 3,
+    rate: 4,
     postImage: [thailand1, thailand2, thailand3],
     location: "Thailand",
     title: "Jabo Village Thailand",
@@ -42,6 +45,7 @@ export const blogInformation = [
   },
   {
     id: 4,
+    rate: 4,
     postImage: [malaysia1, malaysia2, malaysia3],
     location: "Malaysia",
     title: "Langkawi cable car Malaysia",

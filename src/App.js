@@ -7,6 +7,7 @@ import { DestinationInfo } from "./Components/Pages/Destination/DestinationInfo"
 import { OrderFormPhaseOne } from "./Components/Pages/Order/Phase1/OrderFormPhaseOne";
 import { OrderFormPhaseTwo } from "./Components/Pages/Order/Phase2/OrderFormPhaseTwo";
 import { DetailOffers } from "./Components/Pages/DetailOffers/DetailOffer";
+import { BestBlog } from "./Components/Pages/BestBlog/BestBlog";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
@@ -33,6 +34,10 @@ export const router = createBrowserRouter([
       {
         path: "offers/:location",
         element: <DetailOffers />
+      },
+      {
+        path: "bestblog/:location",
+        element: <BestBlog />
       }
     ],
   },

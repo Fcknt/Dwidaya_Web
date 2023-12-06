@@ -27,7 +27,6 @@ const Blog = () => {
 
         <div className="mainContainer grid">
           {blogInformation.map((post) => {
-            // Menggunakan satu argumen post
             return (
               <div
                 key={post.id}
@@ -42,7 +41,9 @@ const Blog = () => {
                   <h3>{post.title}</h3>
                   <p>{post.desc}</p>
                 </div>
-                <div className="readmore" onClick={() => { }}>
+                <div className="readmore" onClick={() => {
+                  navigate(`bestblog/${post.location}`)
+                }}>
                   <span>Read More</span>
                   <BsArrowRightShort className="icon" />
                 </div>
