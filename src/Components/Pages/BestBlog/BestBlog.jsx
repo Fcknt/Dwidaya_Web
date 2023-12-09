@@ -6,6 +6,18 @@ import { useNavigate } from "react-router-dom";
 import { blogInformation } from "../../../data/blog";
 import "./bestblog.scss";
 
+const PreviewImageList = ({ image }) => {
+  return (
+    <div className="preview-image-container">
+      {image.map((item, index) => (
+        <div key={index} className="preview-image">
+          <img src={item} alt={`preview-image-${index}`} />
+        </div>
+      ))}
+    </div>
+  );
+};
+
 const ChooseBlog = ({ img, location, rate, title, onChoose }) => {
   return (
     <div className="book-card">
@@ -81,6 +93,7 @@ export const BestBlog = () => {
       <h1>Dwidaya tour</h1>
       <div className="blog-jumbotron">
         <img src={blog.postImage?.[0]} alt="best-blog-image" />
+        <PreviewImageList image={blog.postImage} />
         <div className="blog-information">
           <div className="blog-rate">
             <h4

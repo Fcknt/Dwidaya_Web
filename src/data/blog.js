@@ -10,8 +10,8 @@ import japan3 from "../Asset/Fuji/fuji3.jpg";
 
 // thailand
 import thailand1 from "../Asset/jabo/jabo1.jpg";
-import thailand2 from "../Asset/jabo/jabo1.jpg";
-import thailand3 from "../Asset/jabo/jabo1.jpg";
+import thailand2 from "../Asset/jabo/jabo2.jpg";
+import thailand3 from "../Asset/jabo/jabo3.jpg";
 
 // malaysia
 import malaysia1 from "../Asset/Langkawi/langkawi1.jpg";
