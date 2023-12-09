@@ -6,11 +6,17 @@ import { useNavigate } from "react-router-dom";
 import { blogInformation } from "../../../data/blog";
 import "./bestblog.scss";
 
-const PreviewImageList = ({ image }) => {
+const PreviewImageList = ({ image, onChangeImage }) => {
   return (
     <div className="preview-image-container">
       {image.map((item, index) => (
-        <div key={index} className="preview-image">
+        <div
+          className="image-choose"
+          key={index}
+          onClick={() => {
+            onChangeImage(item);
+          }}
+        >
           <img src={item} alt={`preview-image-${index}`} />
         </div>
       ))}
@@ -61,13 +67,18 @@ export const BestBlog = () => {
     desc: "",
   });
 
+  // state for choose another destination by filterByChoosen
   const [book, setBook] = useState([]);
+
+  // state for image preview
+  const [preview, setPreview] = useState("");
 
   // filter data by location
   const findDataByLocation = () => {
     const data = blogInformation.find((item) => item.location === location);
     if (data) {
       setBlog(data);
+      setPreview(data.postImage?.[0]);
     }
   };
 
@@ -92,8 +103,13 @@ export const BestBlog = () => {
     <div className="blog-container">
       <h1>Dwidaya tour</h1>
       <div className="blog-jumbotron">
-        <img src={blog.postImage?.[0]} alt="best-blog-image" />
-        <PreviewImageList image={blog.postImage} />
+        <img className="image-preview" src={preview} alt="best-blog-image" />
+        <PreviewImageList
+          image={blog.postImage}
+          onChangeImage={(img) => {
+            setPreview(img);
+          }}
+        />
         <div className="blog-information">
           <div className="blog-rate">
             <h4
