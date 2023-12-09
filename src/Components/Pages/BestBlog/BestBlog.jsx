@@ -70,6 +70,9 @@ export const BestBlog = () => {
   // state for choose another destination by filterByChoosen
   const [book, setBook] = useState([]);
 
+  // state login
+  const [login, setLogin] = useState(false);
+
   // state for image preview
   const [preview, setPreview] = useState("");
 
@@ -90,18 +93,31 @@ export const BestBlog = () => {
     }
   };
 
+  // check is login
+  const isLogin = () => {
+    const data = JSON.parse(localStorage.getItem("login-info"));
+    if (data?.login) {
+      setLogin(data?.login);
+    } else {
+      setLogin(false);
+    }
+  };
+
   // get data by location & filter data by choosen
   useEffect(() => {
     const time = setTimeout(() => {
       findDataByLocation();
       filterByChoosen();
+      isLogin();
     }, 500);
     return () => clearTimeout(time);
   }, [location]);
 
   return (
     <div className="blog-container">
-      <h1>Dwidaya tour</h1>
+      <h1 style={{ cursor: "pointer" }} onClick={() => navigate("/dwidaya")}>
+        Dwidaya tour
+      </h1>
       <div className="blog-jumbotron">
         <img className="image-preview" src={preview} alt="best-blog-image" />
         <PreviewImageList
@@ -149,10 +165,12 @@ export const BestBlog = () => {
           type="button"
           className="order-btn"
           onClick={() => {
-            navigate(`/dwidaya/order/${location}`);
+            login
+              ? navigate(`/dwidaya/order/${location}`)
+              : navigate("/signup");
           }}
         >
-          Order
+          {login ? "Order" : "Signup now"}
         </button>
       </div>
     </div>

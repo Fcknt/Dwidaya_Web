@@ -257,10 +257,10 @@ export const DetailOffers = () => {
           onClick={() => {
             isLogin
               ? navigate(`/dwidaya/order/${location}`)
-              : navigate(`/login`);
+              : navigate(`/signup`);
           }}
         >
-          {isLogin ? "Order" : "Login Now"}
+          {isLogin ? "Order" : "Signup Now"}
         </button>
       </div>
     </>

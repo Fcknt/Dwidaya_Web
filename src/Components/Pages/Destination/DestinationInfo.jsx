@@ -71,8 +71,8 @@ export const DestinationInfo = () => {
             <IoIosArrowForward color={"#559BFF"} />
           </button>
         ) : (
-          <button className="order" onClick={() => navigate("/login")}>
-            <span>Login Now</span>
+          <button className="order" onClick={() => navigate("/signup")}>
+            <span>Signup Now</span>
             <IoIosArrowForward color={"#559BFF"} />
           </button>
         )}
